@@ -1,0 +1,437 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Anature</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="Styles/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="Styles/Site.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="Styles/main.css">
+</head>
+<body style="background-image:url(images/bg.jpg)">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html" onclick="$('#homePage').removeClass('hidden'); $('#aboutPage').addClass('hidden'); $('#contactPage').addClass('hidden');">                
+                <img src="images/logo2.png" style="float: left; max-height: 25px; max-width: 25px; margin-right: 10px;" />
+                <span style="display: inline-block;clear: left;">Anature</span></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <!--
+                    <li><a href="#" onclick="menuAbout();">About</a></li>
+                    <li><a href="#" onclick="menuContact();">Contact</a></li>
+                    -->
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Sale <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="bundleSale.html">bundle sale</a></li>
+                            <li><a href="/">seasonal sale</a></li>
+                            <li><a href="/">Individual sales:</a></li>
+                            <li><p style="margin-left: 30px"><a href="/"><font size="1">Coconut Soap</font></a></p></li>
+                            <li><p style="margin-left: 30px"><a href="/"><font size="1">Honey Soap</font></a></p></li>
+                            <li><p style="margin-left: 30px"><a href="/"><font size="1">Lavendar Soap</font></a></p></li>
+                            <li><p style="margin-left: 30px"><a href="/"><font size="1">Rose Soap</font></a></p></li>
+                            <li class="divider"></li>
+                            <li><a href="/SignalR.Sample/StockTicker.html">best deals</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" id="shoppingCartMenu" onclick="menuCart();">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> <span id="cartMenuText"> Shopping Cart</span></a>
+                    </li>
+                    <li><a href="/Account/Register" id="registerLink">Register</a></li>
+                    <li><a href="/Account/Login" id="loginLink">Log in</a></li>
+                </ul>
+                <form id="searchbox" action="" style="display: inline-block; clear: left; margin-top: 10px;">
+                    <input id="search" type="text" placeholder="Type here">
+                    <input id="submit" type="submit" value="Search">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div><p></p></div>
+    <div class="container body-content">
+        <div id="cartList" class="container hidden">
+            <section class="container">
+                <div id="cartHeader" class="row col-sm-12">
+                    <h2 style="text-align: center">Items in Your Cart</h2>
+                    <hr style="background:#F87431; border:0; height:7px" />
+                    <div class="col-sm-1" style="text-align:center">Bundle</div>
+                    <div class="col-sm-2" style="text-align:center">Name</div>
+                    <div class="col-sm-2" style="text-align:center">Unit Price</div>
+                    <div class="col-sm-2" style="text-align:center">Units</div>
+                    <div class="col-sm-2" style="text-align:center">Bundle Total</div>
+                    <div class="col-sm-1" style="text-align:center">Add one</div>
+                    <div class="col-sm-1" style="text-align:center">Remove one</div>
+                    <div class="col-sm-1" style="text-align:center">Remove Row</div>
+                </div>
+                <div id="cartItem1" class="row col-sm-12 hidden">
+                    <hr style="background:#F87431; border:0; height:1px" />
+                    <div class="col-sm-1" style="text-align:center">
+                        <img src="images/Honey_and_Lemon.PNG">
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        Honey and Lemon
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        £<span id="unitPriceItem1">15.00</span> 
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        <span id="unitItem1">1</span> 
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        £<span id="totalPriceItem1">15.00</span>  
+                    </div>
+                    <div class="col-sm-1" style="text-align:center">
+                        <button id="cbtn11" type="button" class="btn btn-info" onclick="cbtnAddOne('1');">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>                        
+                    </div>
+                    <div class="col-sm-1" style="text-align:center">
+                        <button id="cbtn12" type="button" class="btn btn-info" onclick="cbtnRemoveOne('1');">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-1" style="text-align:center" onclick="cbtnRemoveInList('1');">
+                        <button id="cbtn13" type="button" class="btn btn-info">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+                </div>
+                <div  id="cartItem2" class="row col-sm-12 hidden">
+                    <hr style="background:#F87431; border:0; height:1px" />
+                    <div class="col-sm-1" style="text-align:center">
+                        <img src="images/coconut_oil.PNG">
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        Coconut Oil
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        £<span id="unitPriceItem2">20.00</span>
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        <span id="unitItem2">1</span>
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        £<span id="totalPriceItem2">20.00</span>
+                    </div>
+                    <div class="col-sm-1" style="text-align:center">
+                        <button id="cbtn21" type="button" class="btn btn-info" onclick="cbtnAddOne('2');">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-1" style="text-align:center">
+                        <button id="cbtn22" type="button" class="btn btn-info" onclick="cbtnRemoveOne('2');">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-1" style="text-align:center">
+                        <button id="cbtn23" type="button" class="btn btn-info" onclick="cbtnRemoveInList('2');">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+                </div>
+                <div  id="cartItem3" class="row col-sm-12 hidden">
+                    <hr style="background:#F87431; border:0; height:1px" />
+                    <div class="col-sm-1" style="text-align:center">
+                        <img src="images/image014.PNG">
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        Gift
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        £<span id="unitPriceItem3">25.00</span>
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        <span id="unitItem3">1</span>
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        £<span id="totalPriceItem3">25.00</span>
+                    </div>
+                    <div class="col-sm-1" style="text-align:center">
+                        <button id="cbtn31" type="button" class="btn btn-info" onclick="cbtnAddOne('3');">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-1" style="text-align:center">
+                        <button id="cbtn32" type="button" class="btn btn-info" onclick="cbtnRemoveOne('3');">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-1" style="text-align:center">
+                        <button id="cbtn33" type="button" class="btn btn-info" onclick="cbtnRemoveInList('3');">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+                </div>
+                <div  id="cartItem4" class="row col-sm-12 hidden">
+                    <hr style="background:#F87431; border:0; height:1px" />
+                    <div class="col-sm-1" style="text-align:center">
+                        <img src="images/image015.PNG">
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        Bundle
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        £<span id="unitPriceItem4">30.00</span>
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        <span id="unitItem4">1</span>
+                    </div>
+                    <div class="col-sm-2" style="text-align:center">
+                        £<span id="totalPriceItem4">30.00</span>
+                    </div>
+                    <div class="col-sm-1" style="text-align:center">
+                        <button id="cbtn41" type="button" class="btn btn-info" onclick="cbtnAddOne('4');">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-1" style="text-align:center">
+                        <button id="cbtn42" type="button" class="btn btn-info" onclick="cbtnRemoveOne('4');">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-1" style="text-align:center">
+                        <button id="cbtn43" type="button" class="btn btn-info" onclick="cbtnRemoveInList('4');">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+                </div>
+                <div id="cartFooter" class="row col-sm-12">
+                    <hr style="background:#F87431; border:0; height:4px" />
+                    <div class="col-sm-1" style="text-align:center"></div>
+                    <div class="col-sm-2" style="text-align:center"><h4>Total Units :</h4></div>
+                    <div class="col-sm-2" style="text-align:center"><h4><span id="totalItem">0</span></h4></div>
+                    <div class="col-sm-2" style="text-align:center"></div>
+                    <div class="col-sm-2" style="text-align:center"><h4>Total Price :</h4></div>
+                    <div class="col-sm-1" style="text-align:center"></div>
+                    <div class="col-sm-1" style="text-align:center"><h4> £<span id="totalPrice">0</span></h4></div>
+                    <div class="col-sm-1" style="text-align:center"></div>     
+                    <hr style="background:#F87431; border:0; height:7px" />
+                </div>
+            </section>
+        </div>
+        <div id="itemList" class="container">
+            <section class="container">
+                <div class="row">
+                    <figure class="col-sm-6">
+                        <img src="images/Honey_and_Lemon.PNG" max-width="150" max-height="400">
+                    </figure>
+                    <figure class="col-sm-6">
+                        <p><b><u>Honey and Lemon</u></b></p>
+                        <p>£15.00 for a pack of 5</p>
+                        <button id="btn1" type="button" class="btn btn-info" onclick="cbtnAddRemoveCart('1');">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                            <span id="btn1Text"> Add to Shopping Cart</span>
+                        </button>
+                    </figure>
+                </div>
+                <div class="row">
+                    <figure class="col-sm-6">
+                        <img src="images/coconut_oil.png" max-width="150" max-height="400">
+                    </figure>
+                    <figure class="col-sm-6">
+                        <p><b><u>Coconut Oil</u></b></p>
+                        <p>£20.00 for a pair of valentines' special</p>
+                        <button id="btn2" type="button" class="btn btn-info" onclick="cbtnAddRemoveCart('2');">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                            <span id="btn2Text"> Add to Shopping Cart</span>
+                        </button>
+                    </figure>
+                </div>
+                <div class="row">
+                    <hr />
+                    <figure class="col-sm-6">
+                        <img src="images/image014.png" max-width="221" max-height="340">
+                    </figure>
+                    <figure class="col-sm-6">
+                        <p><b><u>Gifts</u></b></p>
+                        <p>£25.00 for a special gift set</p>
+                        <button id="btn3" type="button" class="btn btn-info" onclick="cbtnAddRemoveCart('3');">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                            <span id="btn3Text"> Add to Shopping Cart</span>
+                        </button>
+                    </figure>                    <hr />
+                </div>
+                <div class="row">
+                    <figure class="col-sm-6">
+                        <img src="images/image015.png" max-width="515" max-height="339">
+                    </figure>
+                    <figure class="col-sm-6">
+                        <p><u><b>Bundles</b></u></p>
+                        <p>£30.00 for a special bundle in gift box</p>
+                        <button id="btn4" type="button" class="btn btn-info" onclick="cbtnAddRemoveCart('4');">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                            <span id="btn4Text"> Add to Shopping Cart</span>
+                        </button>
+                    </figure>
+                </div>
+            </section>
+        </div>
+        <div id="homePage" class="hidden">
+            <section class="container">
+            </section>
+        </div>
+        <div id="aboutPage" class="hidden">
+            <section class="jumbotron">
+                <div class="container">
+                    <div class="row text-center">
+                        <h2>About Page</h2>
+                        <h3>Love Nature</h3>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div id="contactPage" class="hidden">
+            <section class="jumbotron">
+                <div class="container">
+                    <div class="row text-center">
+                        <h2>Contact Page</h2>
+                        <h3>Love Nature</h3>
+                    </div>
+                </div>
+            </section>
+        </div>
+</div>
+    <footer class="container">
+        <div class="row">
+            <p class="col-sm-4">&copy; 2016 Anature</p>
+            <ul class="col-sm-8">
+                <li class="col-sm-1">
+                    <img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/twitter.svg"></a>
+                </li>
+                <li class="col-sm-1">
+                    <a href="https://www.facebook.com/SpringAuraTM">
+                        <img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/facebook.svg">
+                    </a>
+                </li>
+                <li class="col-sm-1">
+                    <img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/instagram.svg">
+                </li>
+                <li class="col-sm-1">  <img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/medium.svg"></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/respond.min.js"></script>
+    <script type="text/javascript" src="Scripts/myjssor.js"></script>
+    <script type="text/javascript">
+        function cbtnAddOne(itemNo) {
+            unitItem = "#unitItem" + itemNo;
+            unitPriceItem = "#unitPriceItem" + itemNo;
+            totalPriceItem = "#totalPriceItem" + itemNo;
+            un = parseInt($(unitItem).text());
+            un += 1; $(unitItem).text(un);
+            up = parseFloat($(unitPriceItem).text());
+            $(totalPriceItem).text(un * up);
+            showTotal();
+        }
+        function cbtnRemoveOne(itemNo) {
+            unitItem = "#unitItem" + itemNo;
+            unitPriceItem = "#unitPriceItem" + itemNo;
+            totalPriceItem = "#totalPriceItem" + itemNo;
+            un = parseInt($(unitItem).text());
+            //alert("un=" + un);
+            if (un > 1) {
+                un = un - 1; $(unitItem).text(un);
+                up = parseFloat($(unitPriceItem).text());
+                $(totalPriceItem).text(un * up);
+                showTotal();
+            }
+        }
+        function cbtnRemoveInList(itemNo) {
+            unitItem = "#unitItem" + itemNo;
+            unitPriceItem = "#unitPriceItem" + itemNo;
+            totalPriceItem = "#totalPriceItem" + itemNo;
+            ui = parseInt($(unitItem).text());
+            ti = parseInt($("#totalItem").text())-ui;
+            $("#totalItem").text(ti.toString());
+            up = parseFloat($(unitPriceItem).text());
+            tp = parseFloat($("#totalPrice").text());
+            $("#totalPrice").text((tp-ui*up).toString());
+
+            cbtnAddRemoveCart(itemNo);
+        }
+        function cbtnAddRemoveCart(itemNo) {
+            cartItemID = "#cartItem" + itemNo;
+            btnTextID = "#btn" + itemNo + "Text";
+            $(cartItemID).toggleClass('hidden');
+            $(btnTextID).text() == ' Add to Shopping Cart' ?
+            $(btnTextID).text(' Remove from Shopping Cart') :
+            $(btnTextID).text(' Add to Shopping Cart');
+            unitItem = "#unitItem" + itemNo;
+            unitPriceItem = "#unitPriceItem" + itemNo;
+            totalPriceItem = "#totalPriceItem" + itemNo;
+            $(unitItem).text("1");
+            $(totalPriceItem).text($(unitPriceItem).text());
+        }
+        function getTotalPrice() {
+            totalPrice = 0.00;
+            for (i = 1; i <= 4; i++) {
+                cartItem = "#cartItem" + i.toString();
+                unitItem = "#unitItem" + i.toString();
+                unitPriceItem = "#unitPriceItem" + i.toString();
+                if (!$(cartItem).hasClass("hidden")) {
+                    totalPrice +=
+                        (parseInt($(unitItem).text()) * parseFloat($(unitPriceItem).text()));
+                }
+            }
+            return totalPrice;
+        }
+        function getTotalItem() {
+            totalItem = 0;
+            for (i = 1; i <= 4; i++) {
+                cartItem = "#cartItem" + i.toString();
+                unitItem = "#unitItem" + i.toString();
+                if (!$(cartItem).hasClass("hidden")) {
+                    totalItem += parseInt($(unitItem).text());
+                }
+            }
+            return totalItem;
+        }
+        function showTotal() {
+            $("#totalItem").text(getTotalItem().toString());
+            $("#totalPrice").text(getTotalPrice().toString());
+        }
+        function menuAbout() {
+            $('#aboutPage').removeClass('hidden');
+            $('#homePage').addClass('hidden');
+            //$('#cartList').addClass('hidden');
+            //$('#itemList').addClass('hidden');
+            $('#contactPage').addClass('hidden');
+        }
+        function menuContact() {
+            $('#contactPage').removeClass('hidden');
+            $('#aboutPage').addClass('hidden');
+            //$('#cartList').addClass('hidden');
+            //$('#itemList').addClass('hidden');
+            $('#homePage').addClass('hidden');
+        }
+        function menuCart() {
+            //if () {
+            //}
+            $('#cartList').toggleClass('hidden');
+            //$('#itemList').toggleClass('hidden');
+            $('#itemList').hasClass('hidden') ? $('#itemList').toggleClass('hidden') : $('#itemList').addClass('hidden');
+            //$('#cartMenuText').text() == ' Shopping Cart' ? $('#cartList').addClass('hidden') : $('#itemList').removeClass('hidden');
+            $('#cartMenuText').text() == ' Shopping Cart' ? $('#cartMenuText').text(' Items List') : $('#cartMenuText').text(' Shopping Cart')
+            $('#contactPage').addClass('hidden');
+            $('#aboutPage').addClass('hidden');
+            showTotal();
+        }
+        // A $( document ).ready() block.
+        $(document).ready(function () {
+            console.log("ready!");
+            showTotal();
+        });
+    </script>
+</body>
+</html>
